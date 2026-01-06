@@ -1,113 +1,204 @@
-# Vanilla App Template
+# Homework №12
 
-Цей проект було створено за допомогою Vite. Для знайомства та налаштування
-додаткових можливостей [звернись до документації](https://vitejs.dev/).
+## General Requirements
 
-## Створення репозиторію за шаблоном
+1. Create a repository **goit-js-hw-12**.
+2. Build the project using [**Vite**](https://vite.dev/). We have prepared a
+   [ready-made template](https://github.com/goitacademy/vanilla-app-template)
+   with all the necessary settings — we recommend using it.
+3. Use the [**Axios**](https://axios-http.com/) library for HTTP requests.
+4. Use **async/await** syntax.
+5. Read the task carefully and complete it in the code editor.
+6. Make sure the code is formatted with **Prettier**, and the browser console
+   contains no errors or warnings when opening the live page.
+7. Submit the homework for review.
 
-Використовуй цей репозиторій організації GoIT як шаблон для створення
-репозиторію свого проекту. Для цього натисни на кнопку `«Use this template»` і
-обери опцію `«Create a new repository»`, як показано на зображенні.
+### Submission Format
 
-![Creating repo from a template step 1](./assets/template-step-1.png)
+The homework must contain **two links**:
 
-На наступному етапі відкриється сторінка створення нового репозиторію. Заповни
-поле його імені, переконайся, що репозиторій публічний, після чого натисни
-кнопку `«Create repository from template»`.
+- a link to the source files repository;
+- a link to the live page on **GitHub Pages**.
 
-![Creating repo from a template step 2](./assets/template-step-2.png)
+> ⚠️ **Important!** File and folder names, as well as the folder structure, must
+> exactly match the specified scheme. Otherwise, the homework **will not be
+> accepted**.
 
-Після того, як репозиторій буде створено, необхідно перейти в налаштування
-створеного репозиторію на вкладку `Settings` > `Actions` > `General` як показано
-на зображенні.
+![Project preview](assets/goit-12.jpg)
 
-![Settings GitHub Actions permissions step 1](./assets/gh-actions-perm-1.png)
+---
 
-Проскроливши сторінку до самого кінця, в секції `«Workflow permissions»` обери
-опцію `«Read and write permissions»` і постав галочку в чекбоксі. Це необхідно
-для автоматизації процесу деплою проекту.
+## Code Structure and Organization
 
-![Settings GitHub Actions permissions step 2](./assets/gh-actions-perm-2.png)
+Use **modularity** and the `export / import` syntax to organize the code.
 
-Тепер у тебе є особистий репозиторій проекту, зі структурою файлів та папок
-репозиторію-шаблону. Далі працюй з ним, як з будь-яким іншим особистим
-репозиторієм, клонуй його собі на комп'ютер, пиши код, роби коміти та відправляй
-їх на GitHub.
+### `pixabay-api.js`
 
-## Підготовка до роботи
+This file should contain functions for making HTTP requests:
 
-1. Переконайся, що на комп'ютері встановлено LTS-версію Node.js.
-   [Скачай та встанови](https://nodejs.org/en/) її якщо необхідно.
-2. Встанови базові залежності проекту в терміналі командою `npm install`.
-3. Запусти режим розробки, виконавши в терміналі команду `npm run dev`.
-4. Перейдіть у браузері за адресою
-   [http://localhost:5173](http://localhost:5173). Ця сторінка буде автоматично
-   перезавантажуватись після збереження змін у файли проекту.
+- **getImagesByQuery(query, page)**
+  - `query` — search keyword (string);
+  - `page` — page number (number);
+  - the function performs an HTTP request and returns the `data` property from
+    the response.
 
-## Файли і папки
+### `render-functions.js`
 
-- Файли розмітки компонентів сторінки повинні лежати в папці `src/partials` та
-  імпортуватись до файлу `index.html`. Наприклад, файл з розміткою хедера
-  `header.html` створюємо у папці `partials` та імпортуємо в `index.html`.
-- Файли стилів повинні лежати в папці `src/css` та імпортуватись до HTML-файлів
-  сторінок. Наприклад, для `index.html` файл стилів називається `index.css`.
-- Зображення додавай до папки `src/img`. Збирач оптимізує їх, але тільки при
-  деплої продакшн версії проекту. Все це відбувається у хмарі, щоб не
-  навантажувати твій комп'ютер, тому що на слабких компʼютерах це може зайняти
-  багато часу.
+In this file:
 
-## Деплой
+- create an instance of **SimpleLightbox** to work with the modal window;
+- implement UI rendering functions:
 
-Продакшн версія проекту буде автоматично збиратися та деплоїтись на GitHub
-Pages, у гілку `gh-pages`, щоразу, коли оновлюється гілка `main`. Наприклад,
-після прямого пуша або прийнятого пул-реквесту. Для цього необхідно у файлі
-`package.json` змінити значення прапора `--base=/<REPO>/`, для команди `build`,
-замінивши `<REPO>` на назву свого репозиторію, та відправити зміни на GitHub.
+  - **createGallery(images)** Accepts an `images` array, creates the HTML markup
+    for the gallery, appends it to the gallery container, and calls the
+    `refresh()` method of the **SimpleLightbox** instance.
 
-```json
-"build": "vite build --base=/<REPO>/",
-```
+  - **clearGallery()** Clears the gallery container.
 
-Далі необхідно зайти в налаштування GitHub-репозиторію (`Settings` > `Pages`) та
-виставити роздачу продакшн версії файлів з папки `/root` гілки `gh-pages`, якщо
-це не було зроблено автоматично.
+  - **showLoader() / hideLoader()** Shows and hides the loading indicator.
 
-![GitHub Pages settings](./assets/repo-settings.png)
+  - **showLoadMoreButton() / hideLoadMoreButton()** Shows and hides the **Load
+    more** button.
 
-### Статус деплою
+All functions do not return any values.
 
-Статус деплою крайнього коміту відображається іконкою біля його ідентифікатора.
+### `main.js`
 
-- **Жовтий колір** - виконується збірка та деплой проекту.
-- **Зелений колір** - деплой завершився успішно.
-- **Червоний колір** - під час лінтингу, збірки чи деплою сталася помилка.
+- Contains **all application logic**.
+- This file handles:
+  - **iziToast** notifications;
+  - checks for the length of arrays in API responses;
+  - **pagination** and **page scrolling** logic.
+- Import functions from `pixabay-api.js` and `render-functions.js` and call them
+  at the appropriate moments.
 
-Більш детальну інформацію про статус можна переглянути натиснувши на іконку, і в
-вікні, що випадає, перейти за посиланням `Details`.
+---
 
-![Deployment status](./assets/deploy-status.png)
+## Task — Image Search
 
-### Жива сторінка
+Use the code from the previous homework and **extend the application with new
+functionality**.
 
-Через якийсь час, зазвичай кілька хвилин, живу сторінку можна буде подивитися за
-адресою, вказаною на вкладці `Settings` > `Pages` в налаштуваннях репозиторію.
-Наприклад, ось посилання на живу версію для цього репозиторію
+For styling, use the provided
+[layout](https://www.figma.com/file/m8k9NQV7qZrtYDCvxfD68B/%D0%94%D0%97-JavaScript?type=design&node-id=3-1010&mode=design&t=eCh8cUwdfWOakuAr-0)
+(or your own styles).
 
-[https://goitacademy.github.io/vanilla-app-template/](https://goitacademy.github.io/vanilla-app-template/).
+---
 
-Якщо відкриється порожня сторінка, переконайся, що у вкладці `Console` немає
-помилок пов'язаних з неправильними шляхами до CSS та JS файлів проекту
-(**404**). Швидше за все у тебе неправильне значення прапора `--base` для
-команди `build` у файлі `package.json`.
+## Refactoring
 
-## Як це працює
+- Use **async/await** syntax for asynchronous requests.
+- Refactor the code from the previous homework.
 
-![How it works](./assets/how-it-works.png)
+---
 
-1. Після кожного пуша у гілку `main` GitHub-репозиторію, запускається
-   спеціальний скрипт (GitHub Action) із файлу `.github/workflows/deploy.yml`.
-2. Усі файли репозиторію копіюються на сервер, де проект ініціалізується та
-   проходить лінтинг та збірку перед деплоєм.
-3. Якщо всі кроки пройшли успішно, зібрана продакшн версія файлів проекту
-   відправляється у гілку `gh-pages`. В іншому випадку, у лозі виконання скрипта
-   буде вказано в чому проблема.
+## Pagination
+
+The **Pixabay API** supports pagination using the `page` and `per_page`
+parameters.
+
+### Requirements:
+
+- Each response must return **15 images** (`per_page = 15`).
+- The initial `page` value is **1**.
+- After each subsequent request, increment `page` by **1**.
+- When performing a new search, reset `page` back to **1**.
+
+### Load More Button
+
+- Add a **Load more** button below the gallery in the HTML.
+- When the button is clicked, request the next page of images.
+- New images must be appended to the existing gallery content.
+- Store the user’s search query in a **global variable**.
+
+#### Button Display Logic:
+
+- If there are no images — the button is hidden.
+- After the first successful request — the button appears.
+- On form resubmission — the button is hidden first and then shown again if
+  needed.
+- The loading indicator must be placed **below the Load more button**.
+
+Watch the
+[demo video of the application at this stage](https://www.youtube.com/watch?v=00hLHI3hx28&embeds_referring_euri=https%3A%2F%2Fwww.edu.goit.global%2F&embeds_referring_origin=https%3A%2F%2Fwww.edu.goit.global&source_ve_path=OTY3MTQ).
+
+---
+
+## End of Collection
+
+The backend response includes the **totalHits** property — the total number of
+images matching the search query.
+
+If the user reaches the end of the collection:
+
+- hide the **Load more** button;
+- display the message:
+
+`We're sorry, but you've reached the end of search results.`
+
+Please note that the end of the collection can occur **on the first page** as
+well as **on any subsequent page**.
+
+Watch the
+[demo video of the application at this stage](https://www.youtube.com/watch?v=0ZQVWxm0VcQ&embeds_referring_euri=https%3A%2F%2Fwww.edu.goit.global%2F&embeds_referring_origin=https%3A%2F%2Fwww.edu.goit.global&source_ve_path=OTY3MTQ).
+
+---
+
+## Page Scrolling
+
+Implement **smooth page scrolling** after each request and after rendering the
+next group of images.
+
+To do this:
+
+1. Get the height of a single gallery card using the
+   [`getBoundingClientRect`](https://developer.mozilla.org/en-US/docs/Web/API/Element/getBoundingClientRect)
+   method.
+2. After adding new elements to the DOM, scroll the page using
+   [`window.scrollBy`](https://developer.mozilla.org/en-US/docs/Web/API/Window/scrollBy)
+   by **two heights of a gallery card**.
+
+Watch the
+[demo video of the application at this stage](https://www.youtube.com/watch?v=aEhYvL7wIV8&embeds_referring_euri=https%3A%2F%2Fwww.edu.goit.global%2F&embeds_referring_origin=https%3A%2F%2Fwww.edu.goit.global&source_ve_path=OTY3MTQ).
+
+---
+
+## What the Mentor Will Pay Attention To
+
+- The homework contains **two links**:
+  - a link to the source files repository;
+  - a link to the live page on **GitHub Pages**
+- The project is built using [**Vite**](https://vite.dev/)
+- The browser developer console contains **no errors, warnings, or console.log**
+- Page elements are styled according to the layout (or custom styles are used)
+- The project includes code from the previous homework
+- The file `pixabay-api.js` contains the function
+  `getImagesByQuery(query, page)` for making HTTP requests
+- The file `render-functions.js`:
+  - creates an instance of **SimpleLightbox**;
+  - implements the following functions:
+    - `createGallery(images)`
+    - `clearGallery()`
+    - `showLoader()`
+    - `hideLoader()`
+    - `showLoadMoreButton()`
+    - `hideLoadMoreButton()`
+- The file `main.js` contains **all application logic**
+- All asynchronous requests are implemented using **async/await**
+- Each HTTP request returns **15 items**
+- New images are added to the DOM **in a single operation**
+- A **Load more** button is displayed below the gallery and loads the next page
+  when clicked
+- After adding new images, the `SimpleLightbox.refresh()` method is called
+- When the user reaches the end of the collection:
+  - the **Load more** button is hidden;
+  - a corresponding message is displayed
+- On each new form submission:
+  - the page number is reset to **1**;
+  - results from the previous search are cleared
+- When clicking a thumbnail image in the gallery, its **large version** opens in
+  a modal window using **SimpleLightbox**
+
+---
+
+**Live page: [GitHub Pages](https://akinaru72.github.io/goit-js-hw-12/)**
