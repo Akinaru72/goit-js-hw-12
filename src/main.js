@@ -85,7 +85,7 @@ const onClickLoadMoreBtn = async () => {
         "We're sorry, but you've reached the end of search results."
       );
     } else {
-      showLoadMoreButton(); // ✅ возвращаем только если есть ещё страницы
+      showLoadMoreButton();
     }
 
     const gallery = document.querySelector('.gallery');
