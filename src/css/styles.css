@@ -67,7 +67,6 @@ button:hover {
   flex-wrap: wrap;
   gap: 24px;
   justify-content: center;
-  margin-bottom: 15px;
 }
 
 .gallery-item {
@@ -119,6 +118,8 @@ button:hover {
   animation: rotation 1s linear infinite;
   display: block;
   margin: auto;
+  margin-top: 32px;
+  margin-bottom: 44px;
 }
 
 @keyframes rotation {

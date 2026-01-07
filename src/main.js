@@ -72,6 +72,7 @@ const onSearchFormSubmit = async event => {
 const onClickLoadMoreBtn = async () => {
   try {
     page += 1;
+    hideLoadMoreButton();
     showLoader();
 
     const { data } = await getImagesByQuery(searchedQuery, page);
@@ -83,6 +84,8 @@ const onClickLoadMoreBtn = async () => {
       showErrorToast(
         "We're sorry, but you've reached the end of search results."
       );
+    } else {
+      showLoadMoreButton(); // ✅ возвращаем только если есть ещё страницы
     }
 
     const gallery = document.querySelector('.gallery');
